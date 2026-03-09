@@ -1,3 +1,3 @@
-import recept_beolvas
+import Menu_adas
 
-print(recept_beolvas.recept_beolvasasa()[0].etel)
+Menu_adas.hozzadas()
