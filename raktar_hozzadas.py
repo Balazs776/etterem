@@ -4,8 +4,8 @@ def raktar_beolvasasa():
             self.termek = termek
             self.darab = darab
     raktaronlevodolgok = []
-    bemenet_files = open("raktar.csv", "W", encoding = "utf-8")
-    be = bemenet_files.strip().split(" ")
+    bemenet_files = open("raktar.csv", "w", encoding = "utf-8")
+    be = bemenet_files.readline().strip()
     while be != "":
         splitelt = be.split(";")
         splitelt[2] = float(splitelt[2])
