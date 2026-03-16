@@ -13,32 +13,27 @@ def hozzadas():
         if item_fajta == "ital":
             menuitem = input(f"Adja meg a(z) {i + 1}. hozzáadandó item nevét: ")
             menuar = input(f"Adja meg a(z) {i + 1} item árát: ")
-            menu_fajl.write(f"{menuitem};{menuar}\n")
+            menu_fajl.write(f"\n{menuitem};{menuar}")
         elif item_fajta == "étel":
             menuitem = input(f"Adja meg a(z) {i + 1}. hozzáadandó item nevét: ")
             menuar = input(f"Adja meg a(z) {i + 1} item árát: ")
-            menu_fajl.write(f"{menuitem};{menuar}\n")
+            menu_fajl.write(f"\n{menuitem};{menuar}")
 
             # Recepthez hozzáadás.
             alapanyagok_szama = int(input("Adja meg a hozzáadandő menü item alapanyagának a számát: "))
             while j < alapanyagok_szama:
                 alapanyag_neve = input(f"Adja meg az {j + 1} alapanyag nevét: ")
                 alapanyag_mennyisége = int(input(f"Mennyi mennyiség kell a(z) {alapanyag_neve} alapanyagból: "))
-                recept_fajl.write(f"{menuitem};{alapanyag_neve};{alapanyag_mennyisége}\n")
+                recept_fajl.write(f"\n{menuitem};{alapanyag_neve};{alapanyag_mennyisége}")
                 j += 1
-
-            # Már raktárban van-e az alapanyag.
-            while k < len(beolvas.raktar_beolvasasa().raktaronlevodolgok):
-                kelle = True
-                if beolvas.raktar_beolvasasa().raktaronlevodolgok[k].termek == alapanyag_neve:
-                    kelle = False
-                k += 1
-
-            # Ha nem akkor hozzáadom a raktárhoz.
-            if kelle:
-                raktari_mennyiseg = int(input(f"Adja meg a(z) {alapanyag_neve} raktárba kerülő mennyiségét: "))
-                raktar_fajl.write(f"{alapanyag_neve};{raktari_mennyiseg}\n")
-        i += 1
-    
-
-
+                # Már raktárban van-e az alapanyag.
+                while k < len(beolvas.raktar_beolvasasa()):
+                    kelle = True
+                    if beolvas.raktar_beolvasasa()[k].termek == alapanyag_neve:
+                        kelle = False
+                    k += 1
+                    # Ha nem akkor hozzáadom a raktárhoz.
+                if kelle:
+                    raktari_mennyiseg = int(input(f"Adja meg a(z) {alapanyag_neve} raktárba kerülő mennyiségét: "))
+                    raktar_fajl.write(f"\n{alapanyag_neve};{raktari_mennyiseg}")
+                i += 1

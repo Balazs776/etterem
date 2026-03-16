@@ -35,11 +35,11 @@ def raktar_beolvasasa():
             self.termek = termek
             self.darab = darab
     raktaronlevodolgok = []
-    bemenet_files3 = open("raktar.csv", "w", encoding = "utf-8")
+    bemenet_files3 = open("raktar.csv", "r", encoding = "utf-8")
     be = bemenet_files3.readline().strip()
     while be != "":
         splitelt = be.split(";")
-        splitelt[2] = float(splitelt[2])
-        raktaronlevodolgok.append(raktar(splitelt[0], splitelt[0]))
+        splitelt[1] = float(splitelt[1])
+        raktaronlevodolgok.append(raktar(splitelt[0], splitelt[1]))
         be = bemenet_files3.readline().strip()
     return raktaronlevodolgok
