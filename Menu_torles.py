@@ -11,4 +11,19 @@ def torles():
             output.write(sor)
             output.write("\n")
         sor = inputs.readline().strip()
+    output.close()
+    inputs.close()
     os.replace("temp.csv", "menu.csv")
+
+    inputs = open("recept.csv", "r", encoding="utf-8")
+    output = open("temp.csv", "w", encoding="utf-8")
+    sor = inputs.readline().strip()
+    while sor != "":
+        splitelt = sor.split(";")
+        if splitelt[0] != be:
+            output.write(sor)
+            output.write("\n")
+        sor = inputs.readline().strip()
+    output.close()
+    inputs.close()
+    os.replace("temp.csv", "recept.csv")

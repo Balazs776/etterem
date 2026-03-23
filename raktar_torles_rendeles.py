@@ -1,0 +1,41 @@
+import os
+def rendelesTorles(torlendo):
+    bemenet = open("recept.csv", "r", encoding="utf-8")
+    output = open("temp.csv", "w", encoding="utf-8")
+    sorok = bemenet.readline().strip()
+    while sorok != "":
+        inputs = open("raktar.csv", "r", encoding="utf-8")
+        sor = inputs.readline().strip()
+        recept = sorok.split(";")
+        recept[2] = float(recept[2])
+        while sor != "":
+            raktar = sor.split(";")
+            raktar[1] = float(raktar[1])
+            if recept[0] == torlendo:  
+                if raktar[0] == recept[1]:
+                    raktar[1] = raktar[1] - recept[2]
+                    output.write(f"{raktar[0]};{raktar[1]}\n")
+            sor = inputs.readline().strip()
+        sorok = bemenet.readline().strip()
+    inputs.close
+    bemenet.close
+
+    bemenet = open("recept.csv", "r", encoding="utf-8")
+    inputs = open("raktar.csv", "r", encoding="utf-8")
+    sorok = bemenet.readline().strip()
+    sor = inputs.readline().strip()
+    recept = sorok.split(";")
+    recept[2] = float(recept[2])
+    while sor != "":
+        raktar = sor.split(";")
+        raktar[1] = float(raktar[1])
+        if recept[0] != torlendo:
+            if raktar[0] == recept[1]:
+                    output.write(f"{raktar[0]};{raktar[1]}\n")
+        sor = inputs.readline().strip()
+
+    bemenet.close()
+    output.close()
+    inputs.close()
+    os.replace("temp.csv", "raktar.csv")
+rendelesTorles("Tyúkhúsleves")

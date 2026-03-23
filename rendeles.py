@@ -1,15 +1,30 @@
+import random
 def rendeles():
-    ugyfelek = []
-    ugyfelek_szemelyek =[]
-    ugyfel = input("Üdvözlöm az éttermünkben, kérem adja meg a nevét! ")
-    ugyfel1 = int(input("Köszönom. Kérem válasszon egy asztalt! "))
+    szolgalok = ["Marcsi", "Lajos", "Viki", "Özséb", "Dániel"]
+    szolgalo = random.randint(0, 4)
+    udvozlo = input("Köszöntöm önt a Magyar Ízek Háza étteremben. Mi a keresztneve? ")
+    asztal = int(input("Kérem válasszon egy asztalt! "))
+    ugyfel = []
+    itemek = []
+    árak = []
+    osszeg = 0
+    ugyfel.append(udvozlo)
+    ugyfel.append(szolgalok[szolgalo])
+    ugyfel.append(asztal)
+    bemenet = input(f"Üdvözlöm önöket én {szolgalok[szolgalo]} vagyok, a pincéretek. Mit adhatok ön(ök)nek")
+    fajl = open("menu.csv", "r", encoding="utf-8")
+    be = fajl.readline().strip()
+    while be != "":
+        splitelt = be.split(";")
+        itemek.append(splitelt[0])
+        árak.append(float(splitelt[1]))
+        be = fajl.readline().strip()
     i = 0
-    while i < len(ugyfelek):
-        if ugyfelek[i] == ugyfel:
-            ugyfel1 = input("A választott asztal már foglalt, kérem válaszon egy másikat! ")
+    while i < len(itemek):
+        if itemek[i] == bemenet:
+            osszeg += árak[i]
+            ugyfel.append(itemek[i])
         i += 1
-    ugyfelek_szemelyek.append(ugyfel)
-    ugyfelek_szemelyek.append(ugyfel1)
-    valasztott = input("Üdvözlöm önt / önöket. Mit adhatok? ")
-    ugyfelek_szemelyek.append(valasztott)
-rendeles()
+    ugyfel.append(osszeg)
+    return ugyfel
+print(rendeles())

@@ -32,8 +32,8 @@ def hozzadas():
                     if beolvas.raktar_beolvasasa()[k].termek == alapanyag_neve:
                         kelle = False
                     k += 1
-                    # Ha nem akkor hozzáadom a raktárhoz.
+                # Ha nem akkor hozzáadom a raktárhoz.
                 if kelle:
                     raktari_mennyiseg = int(input(f"Adja meg a(z) {alapanyag_neve} raktárba kerülő mennyiségét: "))
                     raktar_fajl.write(f"\n{alapanyag_neve};{raktari_mennyiseg}")
-                i += 1
+        i += 1
