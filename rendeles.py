@@ -1,30 +1,31 @@
 import random
-def rendeles():
-    szolgalok = ["Marcsi", "Lajos", "Viki", "Özséb", "Dániel"]
-    szolgalo = random.randint(0, 4)
-    udvozlo = input("Köszöntöm önt a Magyar Ízek Háza étteremben. Mi a keresztneve? ")
-    asztal = int(input("Kérem válasszon egy asztalt! "))
-    ugyfel = []
-    itemek = []
-    árak = []
-    osszeg = 0
-    ugyfel.append(udvozlo)
-    ugyfel.append(szolgalok[szolgalo])
-    ugyfel.append(asztal)
-    bemenet = input(f"Üdvözlöm önöket én {szolgalok[szolgalo]} vagyok, a pincéretek. Mit adhatok ön(ök)nek")
-    fajl = open("menu.csv", "r", encoding="utf-8")
-    be = fajl.readline().strip()
-    while be != "":
-        splitelt = be.split(";")
-        itemek.append(splitelt[0])
-        árak.append(float(splitelt[1]))
-        be = fajl.readline().strip()
-    i = 0
-    while i < len(itemek):
-        if itemek[i] == bemenet:
-            osszeg += árak[i]
-            ugyfel.append(itemek[i])
-        i += 1
-    ugyfel.append(osszeg)
-    return ugyfel
-print(rendeles())
+class Rendeles:
+    def __init__(self, asztal_szama, felszolgalo):
+        self.asztal_szama = asztal_szama
+        self.felszolgalo = felszolgalo
+        self.etelek = []
+        self.osszeg = 0
+        self.lezart = False
+ 
+    def etel_hozzaadas(self, etel_neve, ar):
+        self.etelek.append(etel_neve)
+        self.osszeg += ar
+        print(f"{etel_neve} hozzáadva az {self.asztal_szama}. asztalhoz.")
+ 
+    def fizetes(self):
+        self.lezart = True
+        print(f"A(z) {self.asztal_szama} asztal által {self.osszeg} Ft lett kifizetve", end=" ")
+        print(*self.etelek, end=",")
+        print(f" után.")
+
+
+
+
+        
+ 
+ 
+
+
+
+
+
