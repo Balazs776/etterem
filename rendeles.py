@@ -1,4 +1,6 @@
 import random
+import raktar_torles_rendeles
+
 class Rendeles:
     def __init__(self, asztal_szama, felszolgalo):
         self.asztal_szama = asztal_szama
@@ -10,6 +12,7 @@ class Rendeles:
     def etel_hozzaadas(self, etel_neve, ar):
         self.etelek.append(etel_neve)
         self.osszeg += ar
+        raktar_torles_rendeles.rendelesTorles()
         print(f"{etel_neve} hozzáadva az {self.asztal_szama}. asztalhoz.")
  
     def fizetes(self):

@@ -1,5 +1,11 @@
 import os
 def rendelesTorles(torlendo):
+    """
+    Ez a függvény a rendelés során egy rendelt étel alapanyagát törli a raktárból.
+     Parameters:
+        torlendo - str -> rendelt étel.
+    """
+
     bemenet = open("recept.csv", "r", encoding="utf-8")
     output = open("temp.csv", "w", encoding="utf-8")
     sorok = bemenet.readline().strip()
