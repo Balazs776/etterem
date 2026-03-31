@@ -13,6 +13,7 @@ def hozzadas():
     while i < hozzaadas_szama:
         # Menühöz hozzáadás.
         item_fajta = input("A hozzáadandó item ital vagy étel? ")
+        item_fajta.lower()
         if item_fajta == "ital":
             menuitem = input(f"Adja meg a(z) {i + 1}. hozzáadandó item nevét: ")
             menuar = input(f"Adja meg a(z) {i + 1} item árát: ")
