@@ -2,46 +2,43 @@ import os
 def rendelesTorles(torlendo):
     """
     Ez a függvény a rendelés során egy rendelt étel alapanyagát törli a raktárból.
-     Parameters:
+    Parameters:
         torlendo - str -> rendelt étel.
     """
+    # Beolvassuk a raktarat egy listaba.
+    raktar_lista = []
+    inputs = open("raktar.csv", "r", encoding="utf-8")
+    sor = inputs.readline().strip()
+    while sor != "":
+        adat = sor.split(";")
+        adat[1] = float(adat[1])
+        raktar_lista.append(adat) 
+        sor = inputs.readline().strip()
+    inputs.close()
 
+    # Beolvassuk a recepteket es ha egyezik a levonandoval akkor levonjuk a mennyiseget.
     bemenet = open("recept.csv", "r", encoding="utf-8")
-    output = open("temp.csv", "w", encoding="utf-8")
     sorok = bemenet.readline().strip()
     while sorok != "":
-        inputs = open("raktar.csv", "r", encoding="utf-8")
-        sor = inputs.readline().strip()
         recept = sorok.split(";")
-        recept[2] = float(recept[2])
-        while sor != "":
-            raktar = sor.split(";")
-            raktar[1] = float(raktar[1])
-            if recept[0] == torlendo:  
-                if raktar[0] == recept[1]:
-                    raktar[1] = raktar[1] - recept[2]
-                    output.write(f"{raktar[0]};{raktar[1]}\n")
-            sor = inputs.readline().strip()
+        recept_nev = recept[0]
+        alapanyag = recept[1]
+        mennyiseg = float(recept[2])
+        i = 0
+        if recept_nev == torlendo:
+            while i < len(raktar_lista):
+                if raktar_lista[i][0] == alapanyag:
+                    raktar_lista[i][1] -= mennyiseg
+                i += 1
         sorok = bemenet.readline().strip()
-    inputs.close()
     bemenet.close()
 
-    bemenet = open("recept.csv", "r", encoding="utf-8")
-    inputs = open("raktar.csv", "r", encoding="utf-8")
-    sorok1 = bemenet.readline().strip()
-    sor1 = inputs.readline().strip()
-    recept = sorok1.split(";")
-    recept[2] = float(recept[2])
-    while sor1 != "":
-        raktar = sor1.split(";")
-        raktar[1] = float(raktar[1])
-        if recept[0] != torlendo:
-            print(f"{raktar[0]};{raktar[1]}\n")
-            output.write(f"{raktar[0]};{raktar[1]}\n")
-        sor1 = inputs.readline().strip()
-
-    bemenet.close()
+    # Beleirjuk a listat a temp fajlba, majd kicsereljuk a raktar.csv-re.
+    output = open("temp.csv", "w", encoding="utf-8")
+    i = 0
+    while i < len(raktar_lista):
+        kiirando = f"{raktar_lista[i][0]};{round(raktar_lista[i][1])}\n"
+        output.write(kiirando)
+        i += 1
     output.close()
-    inputs.close()
     os.replace("temp.csv", "raktar.csv")
-rendelesTorles("Tyúkhúsleves")

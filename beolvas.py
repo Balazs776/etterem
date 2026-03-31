@@ -1,4 +1,8 @@
+# Recept beolvasasa.
 def recept_beolvasasa():
+    """
+    Receptek beolvasasa egy tombe.
+    """
     class Recept():
         def __init__(self, etel, alapanyag, mennyiseg):
             self.etel = etel
@@ -14,7 +18,11 @@ def recept_beolvasasa():
         be = bemenet_files1.readline().strip()
     return receptek
 
+# Menu beolvasasa.
 def menu_beolvasasa():
+    """
+    Menu beolvasasa egy tombe.
+    """
     class menuk():
         def __init__(self, etel, ar):
             self.etel = etel
@@ -29,7 +37,11 @@ def menu_beolvasasa():
         be = bemenet_files2.readline().strip()
     return menuitemek
 
+# Raktar beolvasasa.
 def raktar_beolvasasa():
+    """
+    Raktar beolvasasa egy tombe.
+    """
     class raktar():
         def __init__(self, termek, darab):
             self.termek = termek

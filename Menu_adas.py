@@ -1,4 +1,7 @@
 def hozzadas():
+    """
+    A felhasznalo altal megadott itemek es alapanyagai hozzaadasa a menuhoz, recepthez es raktarhoz.
+    """
     import beolvas
     recept_fajl = open("recept.csv", "a", encoding="utf-8")
     menu_fajl = open("menu.csv", "a", encoding="utf-8")
@@ -26,7 +29,7 @@ def hozzadas():
                 alapanyag_mennyisége = int(input(f"Mennyi mennyiség kell a(z) {alapanyag_neve} alapanyagból: "))
                 recept_fajl.write(f"\n{menuitem};{alapanyag_neve};{alapanyag_mennyisége}")
                 j += 1
-                # Már raktárban van-e az alapanyag.
+                # Megnezzuk, hogy már raktárban van-e az alapanyag.
                 while k < len(beolvas.raktar_beolvasasa()):
                     kelle = True
                     if beolvas.raktar_beolvasasa()[k].termek == alapanyag_neve:

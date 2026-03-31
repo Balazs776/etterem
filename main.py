@@ -27,5 +27,6 @@ while i < 1:
             Menu_torles.torles()
         print("Nincs több beállítási lehetőség.\n")
         print("Üdvözlöm a Magyar Ízek Háza étteremben.")
+        
     if bemenet == "vásárló" or bemenet == "Vásárló":
         rendeles.rendelesek()
